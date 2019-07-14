@@ -1,0 +1,34 @@
+<html>
+  <head>
+  <style>
+    body{
+      background-image: url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
+    }
+  </style>
+  </head>
+<body>
+<div class="container" style="background-color:beige;font-style:italic;margin-top:30px;">
+    <div class="panel panel-default">
+    <div class="panel-heading"><b>Game List</b>
+      <div class="col-xs-12 text-right">
+        <%= link_to "Game + ", new_game_path, class: "btn btn-warning btn-sm "%>
+      </div>
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-xs-3">Game</th>
+          <th class="col-xs-3">No of Players</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><% @games.each do |games| %>
+          <tr> 
+            <td><%= games.Game_name %></td>
+            <td><%= games.users.count %></td>
+            <td><%= link_to "Add Score", game_path(games), class: "btn btn-success btn-sm "%></td>
+          </tr><%end%></tbody>
+    </div>
+  </div>
+</tr></body></html>

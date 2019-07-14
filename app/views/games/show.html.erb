@@ -1,0 +1,49 @@
+<html>
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script> 
+      function winner() { 
+        alert("The Winner is: <%= @winner.name%>");
+        alert("The End!!") 
+      } 
+    </script>
+  <style>
+    h1{
+      text-align: center;
+    }
+    body{
+      background-image: url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
+    }
+  </style>
+  <br>
+  <h1>Score Adder</h1>
+</head>
+<body>
+<%=form_tag "/games/#{@game.id}/rounds", method: :post, remote: true do%>
+<br><div class="container">
+ <div class="grid-container">
+    <% @game.users.each do |player| %>
+      <div class="col-md-3">
+        <strong><%= player.name %></strong><br> 
+        <%= text_field_tag "score[#{player.id}]" %>
+      </div>
+    <% end %>
+    <%end%>
+    <%= submit_tag 'Add score' , class: "btn btn-warning btn-xs"%>
+    <div id="scores">
+      <strong>Total</strong><br>
+      <%=  render 'score', game: @game %>
+    </div>
+    <br>
+  </div>
+</div>
+</div>
+<br>
+  <div id="winner" style="text-align:center;">
+  <%= link_to "Back", games_path, class: "btn btn-success btn-xs "%>
+  <button onclick ="winner()" class="btn btn-danger"> End Game </button >
+  </div>
+</body>
+ </html>

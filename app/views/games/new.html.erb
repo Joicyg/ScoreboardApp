@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <style>
+      h1{
+        text-align: center;
+      }
+      body{
+        background-image: url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
+      }
+    </style>
+  <h1>ADD NEW GAME</h1>
+  <div class="container" style="max-width:500px; max-height: 500px;">
+    <div class="grid-container">
+      <%= nested_form_for @game do |form| %>
+      <p>
+        <%= form.label :'Game_name' %><br>
+        <%= form.text_field :Game_name %>
+      </p>
+        <%= form.fields_for :users do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.link_to_remove "Remove", class: "text-danger" %>
+        <%end%>
+      <p><%= form.link_to_add "Add", :users , class: "text-info"%></p>
+          <%= form.submit 'Save', class: "btn btn-success"%>
+          <%= link_to "Back", games_path, class: "btn btn-success btn-xs"%>
+          <%end%>
+      </div>
+    </div>
+  </body> 
+</html>
+
+
